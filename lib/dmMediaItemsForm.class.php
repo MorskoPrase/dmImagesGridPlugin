@@ -5,7 +5,7 @@
  *
  * @author TheCelavi
  */
-class dmMediaItemsForm extends dmBehaviorableForm {
+class dmMediaItemsForm extends dmWidgetPluginForm {
 
     protected $imageResizeMethods = array(
         'center' => 'Center',
@@ -161,7 +161,6 @@ class dmMediaItemsForm extends dmBehaviorableForm {
         $this->getWidgetSchema()->setHelp('show_title', 'Display title for each item');
         
         
-        $this->widgetSchema['cssClass']->setAttribute('style', 'width:95%');
         // CSS clases images
         $this->widgetSchema['css_class_images'] = new sfWidgetFormInputText();
         $this->validatorSchema['css_class_images'] = new sfValidatorString(array(
@@ -169,7 +168,6 @@ class dmMediaItemsForm extends dmBehaviorableForm {
                 ));
         $this->widgetSchema['css_class_images']->setLabel('Image CSS class');
         $this->getWidgetSchema()->setHelp('css_class_images', 'Apply CSS classes for all images');
-        $this->widgetSchema['css_class_images']->setAttribute('style', 'width:95%');
 
         // CSS clases links
         $this->widgetSchema['css_class_links'] = new sfWidgetFormInputText();
@@ -178,7 +176,6 @@ class dmMediaItemsForm extends dmBehaviorableForm {
                 ));
         $this->widgetSchema['css_class_links']->setLabel('Link CSS class');
         $this->getWidgetSchema()->setHelp('css_class_links', 'Apply CSS classes for all links');
-        $this->widgetSchema['css_class_links']->setAttribute('style', 'width:95%');
 
         $this->widgetSchema['media_item'] = new sfWidgetFormInputText();
         $this->validatorSchema['media_item'] = new dmMediaItemValidator();

@@ -5,7 +5,7 @@
  *
  * @author TheCelavi
  */
-class dmMediaItemsView extends dmBehaviorableView {
+class dmMediaItemsView extends dmWidgetPluginView {
 
     public function configure() {
         parent::configure();
@@ -14,7 +14,7 @@ class dmMediaItemsView extends dmBehaviorableView {
     public function filterViewVars(array $vars = array()) {
         $vars = parent::filterViewVars($vars);
         if (!isset($vars['media_item'])) {
-            $vars['media_item'] = null;
+            $vars['media_items'] = null;
             return $vars;
         }
         $media_items = json_decode($vars['media_item'], true);
@@ -41,13 +41,13 @@ class dmMediaItemsView extends dmBehaviorableView {
         if ($this->isCachable() && $cache = $this->getCache()) {
             return $cache;
         }
-        $vars = $this->getViewVars(); 
+        $vars = $this->getViewVars();
+        if (is_null($vars['media_items']))  return $this->renderDefault();
         sfContext::getInstance()->getConfigCache()->registerConfigHandler(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml', 'dmImagesGridPluginTemplatesConfigHandler', array());
         include_once sfContext::getInstance()->getConfigCache()->checkConfig(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml');
         $templates = sfConfig::get('dm_images_grid_plugin');
         if (isset($templates['templates'][$vars['templates']]['css']) && sizeof($templates['templates'][$vars['templates']]['css']) > 0) $this->addStylesheet($templates['templates'][$vars['templates']]['css']);
-        if (isset($templates['templates'][$vars['templates']]['js']) && sizeof($templates['templates'][$vars['templates']]['js']) > 0) $this->addJavascript($templates['templates'][$vars['templates']]['js']);         
-        if (is_null($vars['media_items']))  return $this->renderDefault();
+        if (isset($templates['templates'][$vars['templates']]['js']) && sizeof($templates['templates'][$vars['templates']]['js']) > 0) $this->addJavascript($templates['templates'][$vars['templates']]['js']);                 
         $html = $this->getHelper()->renderPartial('dmImagesGrid', $vars['templates'], array(
             'media_items' => $vars['media_items'],
             'show_title' => $vars['show_title'],
