@@ -134,7 +134,6 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
             $this->setDefault('thumbnail_display_per_row', 3);
         $this->widgetSchema['thumbnail_display_per_row']->setLabel('Display per row');
 
-        sfContext::getInstance()->getConfigCache()->registerConfigHandler(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml', 'dmImagesGridPluginTemplatesConfigHandler', array());
         include_once sfContext::getInstance()->getConfigCache()->checkConfig(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml');
         $templates = sfConfig::get('dm_images_grid_plugin');
         $templates_values = array();
