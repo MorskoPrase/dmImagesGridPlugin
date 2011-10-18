@@ -43,11 +43,9 @@ class dmMediaItemsView extends dmWidgetPluginView {
         }
         $vars = $this->getViewVars();
         if (is_null($vars['media_items']))  return $this->renderDefault();
-        sfContext::getInstance()->getConfigCache()->registerConfigHandler(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml', 'dmImagesGridPluginTemplatesConfigHandler', array());
-        include_once sfContext::getInstance()->getConfigCache()->checkConfig(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml');
-        $templates = sfConfig::get('dm_images_grid_plugin');
-        if (isset($templates['templates'][$vars['templates']]['css']) && sizeof($templates['templates'][$vars['templates']]['css']) > 0) $this->addStylesheet($templates['templates'][$vars['templates']]['css']);
-        if (isset($templates['templates'][$vars['templates']]['js']) && sizeof($templates['templates'][$vars['templates']]['js']) > 0) $this->addJavascript($templates['templates'][$vars['templates']]['js']);                 
+        $templates = sfConfig::get('dm_dmImagesGridPlugin_templates');
+        if (isset($templates[$vars['templates']]['css']) && sizeof($templates[$vars['templates']]['css']) > 0) $this->addStylesheet($templates[$vars['templates']]['css']);
+        if (isset($templates[$vars['templates']]['js']) && sizeof($templates[$vars['templates']]['js']) > 0) $this->addJavascript($templates[$vars['templates']]['js']);                 
         $html = $this->getHelper()->renderPartial('dmImagesGrid', $vars['templates'], array(
             'media_items' => $vars['media_items'],
             'show_title' => $vars['show_title'],

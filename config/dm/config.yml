@@ -1,0 +1,8 @@
+default:
+  dmImagesGridPlugin:
+    templates:
+      default:      
+        template:   default
+        name:       Default
+        css:        ['/dmImagesGridPlugin/css/dmImagesGridDefault.css'] 
+        js:         []

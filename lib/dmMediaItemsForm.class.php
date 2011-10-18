@@ -133,18 +133,16 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
         if (!$this->getDefault('thumbnail_display_per_row'))
             $this->setDefault('thumbnail_display_per_row', 3);
         $this->widgetSchema['thumbnail_display_per_row']->setLabel('Display per row');
-
-        include_once sfContext::getInstance()->getConfigCache()->checkConfig(sfConfig::get('sf_plugins_dir') . '/dmImagesGridPlugin/config/templates.yml');
-        $templates = sfConfig::get('dm_images_grid_plugin');
+        
+        
+        $templates = sfConfig::get('dm_dmImagesGridPlugin_templates');
         $templates_values = array();
-        foreach ($templates['templates'] as $key => $value) {
+        foreach ($templates as $key => $value) {
             $templates_values[$key] = $value['name'];
         }
-        $methods = $this->getService('i18n')->translateArray($templates_values);
-
 
         $this->widgetSchema['templates'] = new sfWidgetFormSelect(array(
-                    'choices' => $methods
+                    'choices' => $this->getService('i18n')->translateArray($templates_values)
                 ));
         $this->validatorSchema['templates'] = new sfValidatorChoice(array(
                     'choices' => array_keys($templates_values)
