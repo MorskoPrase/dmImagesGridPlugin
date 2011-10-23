@@ -199,14 +199,14 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
         if ($this->isBound()) $this->getWidget('media_item')->setAttribute('value', $this->getValidator('media_item')->getVal());
         // End of small hack
 
-        $formRenderer = new dmFrontFormRenderer(array(
-                    new dmFrontFormSection(
+        $formRenderer = new dmDialogFormRenderer(array(
+                    new dmDialogFormSection(
                             array(
                                 array('name' => 'media_item', 'is_big' => true)
                             ),
                             'Images'
                     ),
-                    new dmFrontFormSection(
+                    new dmDialogFormSection(
                             array(
                                 'thumbnail_display_style',
                                 'thumbnail_display_per_row',
@@ -218,7 +218,7 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
                             ),
                             'Grid settings'
                     ),
-                    new dmFrontFormSection(
+                    new dmDialogFormSection(
                             array(                                
                                 'thumbnail_width',
                                 'thumbnail_height',
@@ -228,7 +228,7 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
                             ),
                             'Image settings'
                     ),
-                    new dmFrontFormSection(
+                    new dmDialogFormSection(
                             array(   
                                 array("name" => 'behaviors', "is_big" => true),
                                 array("name" => 'css_class_images', "is_big" => true),
@@ -242,7 +242,7 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
                 $helper->renderPartial('dmImagesGrid', 'mediaItems', array(
                     'form_name' => $this->getName()
                 ));
-        ;
+        ;        
     }
 
     public function bindRequest(sfWebRequest $request) {
@@ -256,7 +256,7 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
 
     public function getStylesheets() {
         return array_merge(
-                        parent::getStylesheets(), dmFrontFormRenderer::getStylesheets(), array(
+                        parent::getStylesheets(), dmDialogFormRenderer::getStylesheets(), array(
                     '/dmImagesGridPlugin/css/dmMediaItemsForm.css'
                         )
         );
@@ -264,7 +264,7 @@ class dmMediaItemsForm extends dmWidgetPluginForm {
 
     public function getJavaScripts() {
         return array_merge(
-                        parent::getJavaScripts(), dmFrontFormRenderer::getJavascripts(), array(
+                        parent::getJavaScripts(), dmDialogFormRenderer::getJavascripts(), array(
                     '/dmImagesGridPlugin/js/dmMediaItemsForm.js'
                         )
         );

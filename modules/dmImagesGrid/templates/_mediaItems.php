@@ -72,7 +72,7 @@
                                     Media configuration
                                 </td>
                                 <td class="field">
-                                    <input class="media_config" type="text" name="<?php echo $form_name; ?>[media_item][media_config][]" />
+                                    <textarea rows="1" class="media_config dm_configurator dm_configure_dm_widget_multimedia_images_grid_media_config" name="<?php echo $form_name; ?>[media_item][media_config][]"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -91,7 +91,7 @@
                                     Link configuration
                                 </td>
                                 <td class="field">
-                                    <input class="link_config" type="text" name="<?php echo $form_name; ?>[media_item][link_config][]" />
+                                    <textarea class="link_config dm_configurator dm_configure_dm_widget_multimedia_images_grid_link_config" type="text" name="<?php echo $form_name; ?>[media_item][link_config][]"></textarea>
                                 </td>
                             </tr>
                             <tr>
