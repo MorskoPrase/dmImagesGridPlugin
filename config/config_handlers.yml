@@ -1,2 +1,0 @@
-%sf_plugins_dir%/dmImagesGridPlugin/config/templates.yml:
-  class:          dmImagesGridPluginTemplatesConfigHandler
